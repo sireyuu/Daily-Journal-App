@@ -9,11 +9,11 @@
     <form class="/compose" method="POST" >
       <div class="form-group">
         <label>Title</label>
-        <input class="form-control" type="text" class="postTitle" id="postTitle" name="postTitle">
+        <input class="form-control" type="text" class="postTitle" id="postTitle" name="postTitle" placeholder="<%= result.title %>">
         <label>Post</label>
-        <textarea class="form-control" id="postTitle" name="postBody" rows="5" cols="30"></textarea>
+        <textarea class="form-control" id="postTitle" name="postBody" rows="5" cols="30"> <%= result.content %> </textarea>
       </div>
-      <button class="btn btn-primary" type="submit" id="addPost" name="addPost">Publish</button>
+      <button class="btn btn-primary" type="submit" id="addPost" name="addPost" >Publish</button>
     </form>
             
     <%- include('partials/footer') %>

@@ -18,7 +18,7 @@
         <p>
         <!-- Post content here substring(0, 100) concatenate " ..." --> 
         <%= tempPosts[i].content %>
-        <a href="\post">Read More</a>
+        <a href="\post/<%= tempPosts[i]._id %>">Read More</a>
         </p>
         <% } %>
 

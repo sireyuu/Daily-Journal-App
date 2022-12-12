@@ -51,6 +51,42 @@ const getAllPost = (req,res) => {
     })
 }
 
+const getPost = (req,res) => {
+    console.log("get post")
+    console.log(req.params.id)
+    Post.findOne({_id: req.params.id}, function(err,result){
+        console.log(result)
+        res.render('post', {result:result})
+    })
+}
+
+const editPost = (req,res) => {
+    console.log("edit post")
+    console.log(req.params.id)
+    Post.findOne({_id: req.params.id}, function(err,result){
+        console.log(result)
+        res.render('compose', {result:result})
+    })
+}
+
+const editOldPost = (req,res) => {
+    console.log("edit old post")
+
+    var newtitle = req.body.postTitle
+    var newcontent = req.body.postBody
+    var newdate = new Date()
+
+    Post.updateOne({_id: req.params.id}, {$set:{title: newtitle, content: newcontent, updatedAt:newdate}})
+
+    res.redirect('/');
+}
+
+const deletePost = (req,res) =>{
+    Post.deleteOne(req.params.id).then((user) => {
+        res.redirect('/')
+    })
+}
+
 app.get('/', getAllPost)
 
 app.get('/compose', function(req, res){
@@ -58,6 +94,9 @@ app.get('/compose', function(req, res){
 });
 
 app.post('/compose', addPost);
+
+app.get('/compose/:id', editPost)
+app.post('/compose/:id', editOldPost)
 
 app.get('/about', function(req, res){
     res.render('about', {aboutContent});
@@ -67,9 +106,8 @@ app.get('/contact', function(req, res){
     res.render('contact', {contactContent});
 });
 
-app.get('/post', function(req,res){
-    res.render('post')
-})
+app.get('/post/:id', getPost)
+app.get('/post/delete/:id', deletePost)
 
 app.listen(3000, function () {
     console.log("server started on port 3000");
