@@ -27,8 +27,6 @@ const addPost = (req,res) => {
         createdAt: new Date(),
         updatedAt: new Date(),
     });
-    
-    console.log(post)
 
     Post.create(post).then((result)=>{
         console.log('asdfasdf');
@@ -37,8 +35,21 @@ const addPost = (req,res) => {
     })
 }
 
+const getAllPost = (req,res) => {
+    console.log("getting posts")
+    var posts = [];
+
+    Post.find({}, function(err, tempPosts){
+        if (err)
+            console.log(err)
+        else
+            res.render('/', {tempPosts:tempPosts, homeStartingContent:homeStartingContent})
+    })
+    
+}
+
 app.get('/', function(req, res){
-    res.render('home', {homeStartingContent});
+    res.render('home', getAllPost);
 });
 
 app.get('/compose', function(req, res){
