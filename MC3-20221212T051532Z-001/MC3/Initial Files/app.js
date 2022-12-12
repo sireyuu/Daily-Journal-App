@@ -83,7 +83,7 @@ const editOldPost = (req,res) => {
 
 const deletePost = (req,res) =>{
     console.log("delete post")
-    
+
     Post.deleteOne({_id:req.params.id}).then((user) => {
         res.redirect('/')
     })
