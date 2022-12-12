@@ -15,7 +15,7 @@ const postSchema = new mongoose.Schema({ title: String, content: String }, { tim
 const Post = mongoose.model("Post", postSchema);
 
 app.get('/', function(req, res){
-    res.render('home');
+    res.render('home', {homeStartingContent});
 });
 
 app.get('/compose', function(req, res){
@@ -23,11 +23,11 @@ app.get('/compose', function(req, res){
 });
 
 app.get('/about', function(req, res){
-    res.render('about');
+    res.render('about', {aboutContent});
 });
 
 app.get('/contact', function(req, res){
-    res.render('contact');
+    res.render('contact', {contactContent});
 });
 
 app.listen(3000, function () {
