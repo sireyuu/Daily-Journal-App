@@ -10,15 +10,18 @@
     
     
         <!-- Start of post here -->
-        
+        <% for(var i = 0; i < tempPosts.length; i++) {    %>
+
         <!-- Post title inside the <h1> -->
-        <h1> </h1>
+        <h1> <%= tempPosts[i].title %> </h1>
     
         <p>
-        <!-- Post content here substring(0, 100) concatenate " ..." -->  
+        <!-- Post content here substring(0, 100) concatenate " ..." --> 
+        <%= tempPosts[i].content %>
         <a href="\post">Read More</a>
         </p>
-        
+        <% } %>
+
         <%- include('partials/footer') %>
     </body>
 </html>
